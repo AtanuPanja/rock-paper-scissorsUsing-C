@@ -56,10 +56,10 @@ int winCheck(int num) //to check win or draw //returns 1 for victory, -1 for a d
 		return 1;
 	}
 }
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) //will be updated soon
 {
 	
-	
+	return 0;
 }
 end{
 	printf("Thanks for playing\n");
