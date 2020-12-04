@@ -27,7 +27,7 @@ void inputCheck(char val[])
 	eq = 2;
 	else{
 	printf("You have entered wrong value\nGAME OVER\n");
-	goto end;
+	eq = 404; // exiting the program  after wrong input
 	}
 }
 int winCheck(int num) //to check win or draw //returns 1 for victory, -1 for a draw and 0 for defeat
@@ -56,11 +56,60 @@ int winCheck(int num) //to check win or draw //returns 1 for victory, -1 for a d
 		return 1;
 	}
 }
-int main(int argc, char *argv[]) //will be updated soon
+int main(int argc, char *argv[]) 
 {
+	int scoreU = 0, gen, scoreC = 0;
+	char name[50];
+	printf("Welcome to the rock, paper, scissors game\nRules are as follows:- \nYou have to enter case sensitive words only to enjoy the game.\nEnter \"rock\" for rock.\nEnter \"paper\" for paper.\nEnter \"scissors\" for scissors.\nYou have 3 turns and for every win you get a point.\nYou need at least two points for winning. Let's start ...\nStart by entering your name\n");
 	
+	scanf("\n");
+	scanf("%s",name);
+	printf("%s vs Computer\n",name);
+	char choice[9]; //size of scissors
+	for(int i = 0; i <3; i++)
+	{
+		printf("Round %d :-\n",(i + 1));
+		printf("%s\'s turn:- \n",name);
+		scanf("\n");
+		scanf("%s",choice);
+		gen = generateRandomNum(3);
+		inputCheck(choice);
+		if(eq == 404)
+		goto end;
+		compTurn(gen);
+		if(winCheck(gen) == -1)
+		{
+			printf("You have a draw\n");
+		}
+		else if(winCheck(gen) == 0)
+		{
+			printf("Computer won, you lose\n");
+			scoreC++;
+		}
+		else if(winCheck(gen) == 1)
+		{
+			printf("You win, computer loses\n");
+			scoreU++;
+		}
+		printf("%s :-\t%d\n",name,scoreU);
+		printf("Computer :-\t%d\n",scoreC);
+	}
+	printf("%s scored %d points\n",name,scoreU);
+	printf("Computer scored %d points\n",scoreC);
+	if(scoreU > scoreC)
+	{
+		printf("Congratulations, %s has won by %d points.\n",name,(scoreU - scoreC));
+	}
+	else if(scoreC > scoreU)
+	{
+		printf("Sorry, %s lost by %d points.\nBetter luck, next time.\n",name,(scoreC - scoreU));
+	}
+	else
+	printf("%s and Computer are tied.\nNo winner\n",name);
 	return 0;
+	end:
+		printf("Thanks for playing\n");
+		
+
 }
-end{
-	printf("Thanks for playing\n");
-}
+
