@@ -3,10 +3,10 @@
 #include<string.h>
 #include<time.h>
 int eq = 0;
-int generateRandomNum(int n)
+int generateRandomNum()
 {
 	srand(time(NULL));
-	return (rand() % n);
+	return (rand() % 3);
 }
 void compTurn(int turn) // to print out Computer's Choice'
 {
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 		printf("%s\'s turn:- \n",name);
 		scanf("\n");
 		scanf("%s",choice);
-		gen = generateRandomNum(3);
+		gen = generateRandomNum();
 		inputCheck(choice);
 		if(eq == 404)
 		goto end;
